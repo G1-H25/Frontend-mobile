@@ -3,5 +3,6 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "window.title": "${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}[Branch: feature-non-push-branch]"
 }

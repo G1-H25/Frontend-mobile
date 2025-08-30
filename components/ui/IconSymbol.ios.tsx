@@ -27,6 +27,9 @@ export function IconSymbol({
         },
         style,
       ]}
-    />
+    >
+    </SymbolView>
   );
 }
+
+

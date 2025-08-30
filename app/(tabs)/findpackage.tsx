@@ -18,7 +18,7 @@ export default function FindPackage() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Where is my package?</ThemedText>
+        <ThemedText style={{fontFamily:'Figtree',textTransform:'uppercase',fontWeight:'800'}} type="title">Where is my package?</ThemedText>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -36,3 +36,4 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
+
