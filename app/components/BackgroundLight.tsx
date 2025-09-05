@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { colors } from '../theme/colors';
+import React, { ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { colors } from "../theme/colors";
 
 type BackgroundProps = {
   children: ReactNode;
@@ -9,7 +10,9 @@ type BackgroundProps = {
 const BackgroundLight = ({ children }: BackgroundProps) => {
   return (
     <View style={styles.Background}>
-      {children}
+      <ScrollView contentContainerStyle={styles.scrollContent}
+      showsVerticalScrollIndicator={false}>
+      {children}</ScrollView>
     </View>
   );
 };
@@ -22,5 +25,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bright,
     borderRadius: 10,
     margin: 20,
+    overflow: "hidden",
   },
+  scrollContent: {
+    padding: 20
+  }
 });
