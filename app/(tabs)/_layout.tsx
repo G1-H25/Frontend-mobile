@@ -32,6 +32,25 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="health"
+        options={{
+          title: 'Health',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <IconWithCircle name="heart" color={color} size={size} />
+          ),
+        }}
+      /><Tabs.Screen
+        name="scan"
+        options={{
+          title: 'Scan',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <IconWithCircle name="camera" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="userprofile"
         options={{
           title: 'Userprofile',
@@ -51,16 +70,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="scan"
-        options={{
-          title: 'Scan',
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="camera" color={color} size={size} />
-          ),
-        }}
-      />
+      
     </Tabs>
   );
 }
