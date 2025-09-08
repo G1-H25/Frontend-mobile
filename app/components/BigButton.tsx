@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../theme/colors';
+import fonts from '../theme/fonts';
 
 type BigButtonProps = {
     title: string;
@@ -17,8 +18,8 @@ export default BigButton
 const styles = StyleSheet.create({
     button: {
         backgroundColor: colors.buttonblue,
-        padding: 20,
-        borderRadius: 20,
+        padding: 14,
+        borderRadius: 12,
         width: '80%',
         alignSelf: 'center',
         marginTop: 20,
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
     buttontext: {
         color: colors.clearblue,
         alignSelf: 'center',
-        fontSize: 30,
+        fontSize: 20,
+        fontWeight: "600",
+        letterSpacing: 0.5,
+        fontFamily: fonts.FigtreeRegular,
     }
 })

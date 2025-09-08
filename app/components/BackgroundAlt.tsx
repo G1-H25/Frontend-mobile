@@ -6,11 +6,11 @@ type BackgroundProps = {
   children: ReactNode;
 };
 
-const Background = ({ children }: BackgroundProps) => {
+const Background2 = ({ children }: BackgroundProps) => {
   return (
     <View style={styles.Background}>
       <ImageBackground
-        source={require('../../assets/images/background_line-04.png')}
+        source={require('../../assets/images/background_line-03.png')}
         style={{ flex: 1, resizeMode: 'cover' }}
       >
         {children}
@@ -19,7 +19,7 @@ const Background = ({ children }: BackgroundProps) => {
   );
 };
 
-export default Background;
+export default Background2;
 
 const styles = StyleSheet.create({
   Background: {

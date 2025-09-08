@@ -22,9 +22,10 @@ export default BackgroundLight;
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: colors.bright,
+    backgroundColor: "rgba(217, 242, 255, 0.9)",
     borderRadius: 10,
-    margin: 20,
+    marginHorizontal: 30,
+    marginVertical: 40,
     overflow: "hidden",
   },
   scrollContent: {
