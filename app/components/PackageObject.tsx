@@ -8,6 +8,7 @@ type PackageObjectProps = {
   weight: number;
   from: string;
   destination: string;
+  index?: number; // Lägg till index som optional prop
 };
 
 const PackageObject = ({
@@ -16,15 +17,17 @@ const PackageObject = ({
   weight,
   from,
   destination,
+  index,
 }: PackageObjectProps) => {
   return (
-      <View style={styles.container}>
-        <Text style={styles.header}>ID nr {id}</Text>
-        <Text style={styles.text}>Name: {name}</Text>
-        <Text style={styles.text}>Weight: {weight} kg</Text>
-        <Text style={styles.text}>From: {from}</Text>
-        <Text style={styles.text}>Destination: {destination}</Text>
-      </View>  
+    <View style={styles.container}>
+      {index && <Text style={styles.index}>{index}.</Text>}
+      <Text style={styles.header}>ID nr {id}</Text>
+      <Text style={styles.text}>Name: {name}</Text>
+      <Text style={styles.text}>Weight: {weight} kg</Text>
+      <Text style={styles.text}>From: {from}</Text>
+      <Text style={styles.text}>Destination: {destination}</Text>
+    </View>
   );
 };
 
@@ -46,5 +49,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 5,
     borderColor: colors.lightblue,
+  },
+  index: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginRight: 5,
+    color: colors.clearblue,
   },
 });
