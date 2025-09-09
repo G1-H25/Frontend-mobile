@@ -3,6 +3,7 @@ on: push
 
 jobs:
   lint:
+    name: Lint code base (eslint)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
