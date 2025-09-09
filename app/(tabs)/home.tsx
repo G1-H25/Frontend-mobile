@@ -7,7 +7,6 @@ import ClearStorageButton from "../components/ClearStorageButton";
 import PackageObject from "../components/PackageObject";
 import UpdateScreen from "../components/UpdateScreen";
 import { colors } from "../theme/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import fonts from "../theme/fonts";
 
 const Home = () => {
@@ -51,11 +50,9 @@ return (
   <Text style={{textAlign: "center", marginVertical: 10}}>No package data yet</Text>
 )}
 
-        <ClearStorageButton>
-          <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Clear all packages</Text>
-          </TouchableOpacity>
-          </ClearStorageButton> 
+        <ClearStorageButton/>
+         
+        
       </BackgroundLight>
     </BackgroundAlt>
 </View>
