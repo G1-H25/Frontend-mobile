@@ -1,9 +1,7 @@
-import { StyleSheet, View, Text, Alert } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, View, Text, Alert, Pressable } from "react-native";
 import { colors } from "../theme/colors";
 import PackageObject from "../components/PackageObject";
 import Scan from "../components/Scan";
-import fonts from "../theme/fonts.ts";
 import Background from "../components/Background";
 
 export default function scan() {
@@ -13,21 +11,18 @@ export default function scan() {
 
   return (
     <View style={styles.container}>
-            <Scan style={styles.overlay} />
+      <Scan style={styles.overlay} />
       <Background style={styles.listContainer}>
-      <Text style={styles.title}>Your scanned item</Text>
-      <View style={styles.listArea}>
-        <PackageObject />
-        {/* Button to confirm receipt */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleNothing}
-        >
-          <Text style={styles.textButton}>Sign as received</Text>
-        </TouchableOpacity>
-      </View>
-    </Background>
-  </View>
+        <View style={styles.listArea}>
+                  <Text style={styles.title}>Your scanned packages</Text>
+          <PackageObject/>
+          {/* Button to confirm receipt */}
+          <Pressable style={styles.button} onPress={handleNothing}>
+            <Text style={styles.textButton}>Sign as received</Text>
+          </Pressable>
+        </View>
+      </Background>
+    </View>
   );
 }
 
@@ -45,33 +40,32 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     marginTop: 20,
-    backgroundColor: colors.darkblue,
   },
   listArea: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.bright,
+    backgroundColor: colors.brightopacity,
     width: "90%",
     alignSelf: "center",
     borderRadius: 20,
-    marginTop: 50,
+    marginTop: 30,
+    paddingTop: 20,
   },
   title: {
-    color: colors.white,
-    alignSelf: 'center',
-    fontSize: 24,
-    letterSpacing: 0.5,
+    color: colors.darkblue,
+    alignSelf: "center",
+    fontSize: 20,
+    letterSpacing: 0.25,
     textTransform: "uppercase",
-    marginTop: 20,
-    fontFamily: fonts.FigtreeRegular,
-    fontWeight: "600",
+    fontFamily: "Figtree-Bold",
+    marginBottom: 20,
   },
   button: {
     backgroundColor: colors.greenok,
     padding: 12,
-    borderRadius: 20,
+    borderRadius: 21,
     alignSelf: "center",
-    marginTop: 10,
+    marginVertical: 30,
   },
   textButton: {
     color: colors.white,

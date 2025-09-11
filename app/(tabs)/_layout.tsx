@@ -63,7 +63,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="userprofile"
         options={{
           title: "Userprofile",
@@ -72,7 +72,7 @@ export default function TabLayout() {
             <IconWithCircle name="account" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="maps"
         options={{

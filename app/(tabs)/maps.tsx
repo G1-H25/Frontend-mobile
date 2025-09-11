@@ -1,30 +1,36 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import Background from "../components/Background";
 import { colors } from "../theme/colors";
-import fonts from "../theme/fonts";
-import BackgroundLight from "../components/BackgroundLight";
+import MapComponent from "../components/MapComponent";
 
 const maps = () => {
   return (
+    <View style={styles.container}>
     <Background>
-      <Text style={styles.text}>maps</Text>
-      <BackgroundLight />
-    </Background>
+      <Text style={styles.text}>Map View</Text>
+    <View style={{ flex: 1 }}>
+      <MapComponent />
+    </View>
+</Background>
+    </View>
   );
 };
 
 export default maps;
 
 const styles = StyleSheet.create({
-  text: {
-    color: colors.white,
-    alignSelf: "center",
-    fontSize: 24,
-    letterSpacing: 0.5,
+    container: { 
+    flex: 1, 
+    paddingTop: 30,
+  },
+text: {
+    color: colors.bright,
+    alignSelf: 'center',
+    fontSize: 20,
+    letterSpacing: 0.25,
     textTransform: "uppercase",
-    marginTop: 20,
-    fontFamily: fonts.FigtreeRegular,
-    fontWeight: "600",
+    marginTop: 40,
+    fontFamily: 'Figtree-Bold',
   },
 });

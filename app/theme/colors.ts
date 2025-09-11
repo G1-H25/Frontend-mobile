@@ -1,5 +1,6 @@
 const colors = {
   bright: "#D9F2FF",
+  brightopacity: "rgba(217, 242, 255, 0.85)",
   buttonblue: "#C7ECFF",
   lightblue: "#9ACEFE",
   clearblue: "#2782E2",
@@ -8,8 +9,8 @@ const colors = {
   greenoksemi: "#308654",
   redalert: "#BF2442",
   redalertsemi: "#991831",
-  yellowarn: "#F3BF26",
-  yellowarnsemi: "#E0A00A",
+  yellowwarn: "#F3BF26",
+  yellowwarnsemi: "#E0A00A",
   white: "#FFFFFF",
   black: "#000000",
 };

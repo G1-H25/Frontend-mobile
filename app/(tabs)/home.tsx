@@ -1,14 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import BackgroundAlt from "../components/BackgroundAlt";
 import BackgroundLight from "../components/BackgroundLight";
 import ClearStorageButton from "../components/ClearStorageButton";
 import PackageObject from "../components/PackageObject";
 import UpdateScreen from "../components/UpdateScreen";
 import { colors } from "../theme/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import fonts from "../theme/fonts";
+
 
 const Home = () => {
   const [packageData, setPackageData] = useState<
@@ -39,7 +38,7 @@ const Home = () => {
 return (
     <View style={styles.container}>
     <BackgroundAlt>
-              <Text style={styles.text}>Checked in items</Text>
+              <Text style={styles.text}>Scanned packages</Text>
       <BackgroundLight>
         {/* UpdateScreen calls fetchData whenever screen is focused */}
         <UpdateScreen callback={fetchData} />
@@ -48,14 +47,11 @@ return (
     <PackageObject key={pkg.id || idx} index={idx + 1} {...pkg} />
   ))
 ) : (
-  <Text style={{textAlign: "center", marginVertical: 10}}>No package data yet</Text>
+  <Text style={{textAlign: "center", marginVertical: 60, color: colors.darkblue, fontSize: 20, fontFamily: 'Figtree-Medium',}}>No package data yet.</Text>
 )}
-
-        <ClearStorageButton>
-          <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Clear all packages</Text>
-          </TouchableOpacity>
-          </ClearStorageButton> 
+          <Pressable style={styles.button}>
+        <ClearStorageButton/> 
+          </Pressable>
       </BackgroundLight>
     </BackgroundAlt>
 </View>
@@ -67,17 +63,16 @@ export default Home;
 const styles = StyleSheet.create({
     container: { 
     flex: 1, 
-    paddingTop: 20,
+    paddingTop: 30,
   },
   text: {
-    color: colors.white,
+    color: colors.bright,
     alignSelf: 'center',
-    fontSize: 24,
-    letterSpacing: 0.5,
+    fontSize: 20,
+    letterSpacing: 0.25,
     textTransform: "uppercase",
-    marginTop: 20,
-    fontFamily: fonts.FigtreeRegular,
-    fontWeight: "600",
+    marginTop: 40,
+    fontFamily: 'Figtree-Bold',
   },
     overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -86,11 +81,12 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   button: {
-    backgroundColor: colors.white,
-    padding: 12,
-    borderRadius: 20,
+    backgroundColor: colors.clearblue,
+    padding: 4,
+    borderRadius: 40,
     alignSelf: 'center',
     marginTop: 10,
+    width: "60%",
   },
   buttonText: {
     color: colors.darkblue,
