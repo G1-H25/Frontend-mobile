@@ -1,28 +1,32 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Background from '../components/Background'
 import { colors } from '../theme/colors'
-import fonts from '../theme/fonts'
 
 const health = () => {
   return (
+        <View style={styles.container}>
     <Background>
       <Text style={styles.text}>health overview</Text>
     </Background>
+    </View>
   )
 }
 
 export default health
 
 const styles = StyleSheet.create({
+    container: { 
+    flex: 1, 
+    paddingTop: 30,
+  },
 text: {
-    color: colors.white,
+    color: colors.bright,
     alignSelf: 'center',
-    fontSize: 24,
-    letterSpacing: 0.5,
+    fontSize: 20,
+    letterSpacing: 0.25,
     textTransform: "uppercase",
-    marginTop: 20,
-    fontFamily: fonts.FigtreeRegular,
-    fontWeight: "600",
+    marginTop: 40,
+    fontFamily: 'Figtree-Bold',
   },
 })

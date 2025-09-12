@@ -14,7 +14,9 @@ const ClearStorageButton = () => {
     }
   };
 
-  return <Button title="Clear Packages" onPress={handleClear} />;
+  return (
+    <Button title="Clear all packages" color="#fff" onPress={handleClear}/>
+  );
 };
 
 export default ClearStorageButton;

@@ -1,0 +1,105 @@
+import React, { useState, useEffect } from "react";
+import { StyleSheet, SafeAreaView, Image } from "react-native";
+import MapView, { Marker, Region } from "react-native-maps";
+import * as Location from "expo-location";
+import { colors } from "../theme/colors";
+import {FAB} from 'react-native-paper';
+
+const MapComponent = () => {
+  const [position, setPosition] = useState<Region>({
+    latitude: 59.3293, fallback: 'Stockholm',
+    longitude: 18.0686,
+    latitudeDelta: 0.0421,
+    longitudeDelta: 0.0421,
+  });
+
+  useEffect(() => {
+    (async () => {
+      // Be om tillstånd
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        return;
+      }
+
+      // Hämta position
+      const location = await Location.getCurrentPositionAsync({});
+      setPosition({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0421,
+        longitudeDelta: 0.0421,
+      });
+    })();
+  }, []);
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <MapView
+        style={styles.map}
+        region={position}
+        showsUserLocation={false}
+        showsMyLocationButton={true}
+        followsUserLocation={true}
+        showsCompass={true}
+        scrollEnabled={true}
+        zoomEnabled={true}
+        pitchEnabled={true}
+        rotateEnabled={true}
+      >
+        <FAB
+        style={{
+          position: 'absolute',
+          margin: 16,
+          right: 85,
+          top: 0,
+          zIndex: 1,
+          backgroundColor: colors.bright,
+        }}
+        small
+        icon="crosshairs-gps"
+        label="Locate me"
+        onPress={() => {
+          (async () => {
+            const location = await Location.getCurrentPositionAsync({});
+            setPosition({
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+              latitudeDelta: 0.0421,
+              longitudeDelta: 0.0421,
+            });
+          })();
+        }}
+      />
+        <Marker
+          title="You are here"
+          description="This is your current location."
+          coordinate={position}
+        >  
+        <Image 
+    source={require('../../assets/images/pin-blue-3.png')}
+    style={styles.markerImage}
+  />
+        </Marker>
+      </MapView>
+    </SafeAreaView>
+  );
+};
+
+export default MapComponent;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, // viktigt för att kartan ska fylla skärmen
+    justifyContent: "center", 
+  },
+  map: {
+    flex: 1,
+    margin: 40,
+    borderRadius: 10,
+  },
+  markerImage: {
+    width: 35,
+    height: 60,
+},
+});

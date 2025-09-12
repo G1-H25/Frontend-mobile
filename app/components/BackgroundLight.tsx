@@ -22,7 +22,7 @@ export default BackgroundLight;
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: "rgba(217, 242, 255, 0.9)",
+    backgroundColor: colors.brightopacity,
     borderRadius: 10,
     marginHorizontal: 30,
     marginVertical: 40,

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import AnimatedLogo from "./components/AnimatedLogo";
-import fonts from "./theme/fonts";
 import { colors } from "./theme/colors";
-import Background2 from "./components/Background";
+import Background from "./components/Background";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 export default function Index() {
@@ -14,22 +14,25 @@ export default function Index() {
     // Navigera till home efter 4 sekunder
     const timer = setTimeout(() => {
       router.replace("/home"); // "replace" tar bort splash-skärmen från historiken
-    }, 6000);
+    }, 4000);
 
     return () => clearTimeout(timer); // Rensa timeout om komponenten avmonteras
   }, [router]);
 
   return (
-    <Background2>
+        <GestureHandlerRootView style={{ flex: 1, paddingTop: 30, }}>
+    <Background>
     <View style={styles.container}>
 
       <View style={styles.circle}>
                 <AnimatedLogo />
 {/* <Image source={require("../assets/logos/logo-trackpack-1.png")} style={styles.logo} /> */}
 </View>
-      <Text style={styles.text}>Welcome</Text>
+      <Text style={styles.text}>Welcome to TrackApp</Text>
+      <Text style={styles.smalltext}>2025 Copyright &copy; by Team One</Text>
     </View>
-    </Background2>
+    </Background>
+    </GestureHandlerRootView>
   );
 }
 
@@ -38,9 +41,11 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: "center", 
     alignItems: "center",
-    backgroundColor: colors.darkblue,
+    marginTop: 160,
   },
     circle: {
+    marginTop: 40,
+    flex: 0,
     width: 200,
     height: 200,
     borderRadius: 100,
@@ -59,8 +64,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontWeight: "500",
     letterSpacing: 4,
-    color: "#D9F2FF",
-    fontFamily: fonts.figtreeItalic,
+    color: colors.bright,
+    fontFamily: "Figtree",
     textTransform: "uppercase",
   },
+    smalltext: {
+    fontSize: 13.5, 
+    textAlign: "center",
+    marginTop: 300,
+    color: colors.bright,
+    fontFamily: "Figtree-Medium",
+  },    
 });
