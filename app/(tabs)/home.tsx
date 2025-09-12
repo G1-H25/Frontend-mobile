@@ -1,13 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import BackgroundAlt from "../components/BackgroundAlt";
 import BackgroundLight from "../components/BackgroundLight";
 import ClearStorageButton from "../components/ClearStorageButton";
 import PackageObject from "../components/PackageObject";
 import UpdateScreen from "../components/UpdateScreen";
 import { colors } from "../theme/colors";
-
 
 const Home = () => {
   const [packageData, setPackageData] = useState<
