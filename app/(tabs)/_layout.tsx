@@ -9,7 +9,7 @@ const IconWithCircle = ({
   color,
   size,
 }: {
-  name: string;
+  name: any;
   color: string;
   size: number;
 }) => (
@@ -62,7 +62,8 @@ export default function TabLayout() {
             <IconWithCircle name="camera" color={color} size={size} />
           ),
         }}
-      />
+      />,
+      
       {/* <Tabs.Screen
         name="userprofile"
         options={{
@@ -80,6 +81,16 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <IconWithCircle name="map" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="packages"
+        options={{
+          title: "Packages",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <IconWithCircle name="package" color={color} size={size} />
           ),
         }}
       />
