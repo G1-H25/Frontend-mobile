@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, Image } from "react-native";
-import MapView, { Marker, Region } from "react-native-maps";
 import * as Location from "expo-location";
+import React, { useEffect, useState } from "react";
+import { Image, SafeAreaView, StyleSheet } from "react-native";
+import MapView, { Marker, Region } from "react-native-maps";
+import { FAB } from 'react-native-paper';
 import { colors } from "../theme/colors";
-import {FAB} from 'react-native-paper';
 
 const MapComponent = () => {
   const [position, setPosition] = useState<Region>({
-    latitude: 59.3293, fallback: 'Stockholm',
-    longitude: 18.0686,
-    latitudeDelta: 0.0421,
-    longitudeDelta: 0.0421,
-  });
+  latitude: 59.3293,
+  longitude: 18.0686,
+  latitudeDelta: 0.0421,
+  longitudeDelta: 0.0421,
+});
 
   useEffect(() => {
     (async () => {
@@ -38,7 +38,7 @@ const MapComponent = () => {
       <MapView
         style={styles.map}
         region={position}
-        showsUserLocation={false}
+        showsUserLocation={true}
         showsMyLocationButton={true}
         followsUserLocation={true}
         showsCompass={true}
@@ -47,7 +47,18 @@ const MapComponent = () => {
         pitchEnabled={true}
         rotateEnabled={true}
       >
-        <FAB
+        <Marker
+          title="You are here"
+          description="This is your current location."
+          coordinate={position}
+        >  
+        <Image 
+    source={require('../../assets/images/pin-blue-3.png')}
+    style={styles.markerImage}
+  />
+        </Marker>
+      </MapView>
+      <FAB
         style={{
           position: 'absolute',
           margin: 16,
@@ -71,17 +82,6 @@ const MapComponent = () => {
           })();
         }}
       />
-        <Marker
-          title="You are here"
-          description="This is your current location."
-          coordinate={position}
-        >  
-        <Image 
-    source={require('../../assets/images/pin-blue-3.png')}
-    style={styles.markerImage}
-  />
-        </Marker>
-      </MapView>
     </SafeAreaView>
   );
 };
