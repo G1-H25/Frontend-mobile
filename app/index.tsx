@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     smalltext: {
     fontSize: 13.5, 
     textAlign: "center",
-    marginTop: 300,
+    marginTop: 260,
+    marginBottom: 20,
     color: colors.bright,
     fontFamily: "Figtree-Medium",
   },    
