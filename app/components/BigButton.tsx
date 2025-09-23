@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../theme/colors';
-import fonts from '../theme/fonts';
 
 type BigButtonProps = {
     title: string;
@@ -9,7 +8,8 @@ type BigButtonProps = {
 
 const BigButton = ({title}: BigButtonProps) => {
   return (<>
-    <TouchableOpacity style={styles.button}><Text style={styles.buttontext}>{title}</Text></TouchableOpacity></>
+    <TouchableOpacity style={styles.button}><Text style={styles.buttontext}>{title}</Text></TouchableOpacity>
+    </>
   )
 }
 
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "600",
         letterSpacing: 0.5,
-        fontFamily: fonts.FigtreeRegular,
+        fontFamily: "Figtree-Regular",
     }
 })

@@ -8,15 +8,20 @@ const IconWithCircle = ({
   name,
   color,
   size,
+  focused,
 }: {
   name: any;
   color: string;
   size: number;
+  focused: boolean;
 }) => (
-  <View style={[styles.iconCircle, { backgroundColor: colors.darkblue }]}>
+  <View style={[
+      styles.iconCircle,
+      { backgroundColor: focused ? colors.clearblue : colors.darkblue },
+    ]}>
     <MaterialCommunityIcons
       name={name}
-      color={colors.white}
+      color={focused ? colors.white : colors.white}
       size={size * 0.9}
     />
   </View>
@@ -38,8 +43,8 @@ export default function TabLayout() {
         options={{
           title: "Home",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="home" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="home" size={size} focused={focused} />
           ),
         }}
       />
@@ -48,8 +53,8 @@ export default function TabLayout() {
         options={{
           title: "Health",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="heart" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="heart" size={size} focused={focused} />
           ),
         }}
       />
@@ -58,29 +63,28 @@ export default function TabLayout() {
         options={{
           title: "Scan",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="camera" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="camera" size={size} focused={focused} />
           ),
         }}
-      />,
-      
-      {/* <Tabs.Screen
-        name="userprofile"
+      />
+      <Tabs.Screen
+        name="packages"
         options={{
-          title: "Userprofile",
+          title: "Packages",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="account" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="format-list-bulleted-square" size={size} focused={focused} />
           ),
         }}
-      /> */}
+      />
       <Tabs.Screen
         name="maps"
         options={{
           title: "Maps",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="map" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="map" size={size} focused={focused} />
           ),
         }}
       />
@@ -89,8 +93,8 @@ export default function TabLayout() {
         options={{
           title: "Fetchpack",
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <IconWithCircle name="package" color={color} size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="map" size={size} focused={focused} />
           ),
         }}
       />

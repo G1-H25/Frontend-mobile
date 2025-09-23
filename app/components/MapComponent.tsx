@@ -1,9 +1,10 @@
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
-import { Image, SafeAreaView, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import MapView, { Marker, Region } from "react-native-maps";
 import { FAB } from 'react-native-paper';
 import { colors } from "../theme/colors";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const MapComponent = () => {
   const [position, setPosition] = useState<Region>({
@@ -34,7 +35,7 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <MapView
         style={styles.map}
         region={position}
@@ -62,10 +63,12 @@ const MapComponent = () => {
         style={{
           position: 'absolute',
           margin: 16,
-          right: 85,
-          top: 0,
+          right: 130,
+          bottom: 10,
           zIndex: 1,
           backgroundColor: colors.bright,
+          borderColor: colors.lightblue,
+          borderWidth: 4,
         }}
         small
         icon="crosshairs-gps"
@@ -82,7 +85,7 @@ const MapComponent = () => {
           })();
         }}
       />
-    </SafeAreaView>
+    </GestureHandlerRootView>
   );
 };
 
