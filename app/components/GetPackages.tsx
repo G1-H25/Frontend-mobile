@@ -4,17 +4,20 @@ import { ActivityIndicator } from "react-native-paper";
 import { Package } from "../types/types";
 import PackageObject from "./PackageObject";
 
-const API_URL = "http://192.168.1.53:3000/orders/";
+// const API_URL = "http://84.216.139.251:3000/orders/";
 
 const GetPackages: React.FC = () => {
-  // console.log(API_URL);
+  const API_URL = process.env.EXPO_PUBLIC_API_URL;
+  // Loggar api-adress från .env (ändra till din lokala IP-adress i .env)
+  // console.log(process.env.EXPO_PUBLIC_API_URL);
+  
 
   const [packages, setPackages] = useState<Package[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const fetchPackages = async (): Promise<void> => {
     try {
-      const response = await fetch(`${API_URL}`);
+      const response = await fetch(`${API_URL}orders`);
       if (!response.ok) {
         throw new Error(
           `Kunde ej hämta data från ${API_URL}, ${response.status}`

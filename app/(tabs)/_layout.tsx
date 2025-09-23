@@ -85,9 +85,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="packages"
+        name="fetchpack"
         options={{
-          title: "Packages",
+          title: "Fetchpack",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <IconWithCircle name="package" color={color} size={size} />

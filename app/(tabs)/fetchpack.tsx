@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import Background from "../components/Background";
 import GetPackages from "../components/GetPackages";
 
-const packages = () => {
+const fetchpack = () => {
   return (
     <Background>
       <ScrollView style={styles.container}>
@@ -13,7 +13,7 @@ const packages = () => {
   );
 };
 
-export default packages;
+export default fetchpack;
 
 const styles = StyleSheet.create({
   container: {
