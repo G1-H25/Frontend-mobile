@@ -1,24 +1,23 @@
-import { StyleSheet, View, Text, Alert, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable} from "react-native";
 import { colors } from "../theme/colors";
-import PackageObject from "../components/PackageObject";
+import ScannedItem from "../components/ScannedItem";
 import Scan from "../components/Scan";
 import Background from "../components/Background";
+import NavigationButton from "../components/NavigationButton";
+
 
 export default function scan() {
-  const handleNothing = () => {
-    Alert.alert("This does nothing yet");
-  };
+
 
   return (
     <View style={styles.container}>
       <Scan style={styles.overlay} />
       <Background style={styles.listContainer}>
+        <Text style={styles.title}>Your latest scan</Text>
         <View style={styles.listArea}>
-                  <Text style={styles.title}>Your scanned packages</Text>
-          <PackageObject/>
-          {/* Button to confirm receipt */}
-          <Pressable style={styles.button} onPress={handleNothing}>
-            <Text style={styles.textButton}>Sign as received</Text>
+          <ScannedItem/>
+          <Pressable style={styles.button} >
+          <NavigationButton/>
           </Pressable>
         </View>
       </Background>
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-    marginTop: 20,
   },
   listArea: {
     justifyContent: "center",
@@ -48,30 +46,30 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     borderRadius: 20,
-    marginTop: 30,
-    paddingTop: 20,
+    paddingTop: 60,
   },
   title: {
-    color: colors.darkblue,
+    color: colors.clearblue,
     alignSelf: "center",
     fontSize: 20,
     letterSpacing: 0.25,
     textTransform: "uppercase",
     fontFamily: "Figtree-Bold",
-    marginBottom: 20,
+    marginVertical: 20,
   },
   button: {
-    backgroundColor: colors.greenok,
-    padding: 12,
+    backgroundColor: colors.bright,
+    paddingVertical: 3,
     borderRadius: 21,
     alignSelf: "center",
     marginVertical: 30,
+    paddingHorizontal: 20,
   },
   textButton: {
     color: colors.white,
     alignSelf: "center",
     fontSize: 15,
-    fontWeight: "700",
+    fontFamily: "Figtree-Bold",
     letterSpacing: 1,
     textTransform: "uppercase",
   },
