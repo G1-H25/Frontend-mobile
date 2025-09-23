@@ -4,7 +4,6 @@ import { ActivityIndicator } from "react-native-paper";
 import { Package } from "../types/types";
 import PackageObject from "./PackageObject";
 
-// const API_URL = "http://84.216.139.251:3000/orders/";
 
 const GetPackages: React.FC = () => {
   const API_URL = process.env.EXPO_PUBLIC_API_URL;
