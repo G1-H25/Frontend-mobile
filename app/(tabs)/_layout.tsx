@@ -10,7 +10,7 @@ const IconWithCircle = ({
   size,
   focused,
 }: {
-  name: string;
+  name: any;
   color: string;
   size: number;
   focused: boolean;
@@ -82,6 +82,16 @@ export default function TabLayout() {
         name="maps"
         options={{
           title: "Maps",
+          headerShown: false,
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="map" size={size} focused={focused} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="fetchpack"
+        options={{
+          title: "Fetchpack",
           headerShown: false,
           tabBarIcon: ({ size, focused }) => (
             <IconWithCircle name="map" size={size} focused={focused} />
