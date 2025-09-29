@@ -10,22 +10,44 @@ type PackageObjectProps = {
 };
 
 const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
-
-  if (!pkg) return <ActivityIndicator/>;
+  if (!pkg) return <ActivityIndicator />;
 
   return (
     <View style={styles.container}>
-      {index !== undefined && <Text style={styles.text}>ID: {pkg.OrderId}</Text> }
-      <Text style={styles.text}>Temperatur: {pkg.CurrentTemp}</Text>
-      <Text style={styles.text}>Luftfuktighet: {pkg.CurrentHumidity}</Text>
-      <Text style={styles.text}>TUG: {pkg.TimeOutsideRange}</Text>
-      <Text style={styles.text}>RouteName: {pkg.RouteName}, {pkg.RouteCode}</Text>
-      <Text style={styles.text}>SändningsNr: {pkg.Sändningsnr}</Text>
-      <Text style={styles.text}>Från: {pkg.SenderName}</Text>
-      <Text style={styles.text}>Till: {pkg.RecipientName}</Text>
-      <Text style={styles.text}>Förväntad temperatur: {pkg.ExpectedTempMin}° - {pkg.ExpectedTempMax}°</Text>
-      <Text style={styles.text}>Förväntad luftfuktighet: {pkg.ExpectedHumidityMin}% - {pkg.ExpectedHumidityMax}%</Text>
-      <Text style={styles.text}>Status: {pkg.Status} @ {new Date(pkg.StatusTime).toLocaleString()}</Text>
+      {index !== undefined && (
+        <Text style={styles.text}>ID: {pkg.sändningsnr}</Text>
+      )}
+
+      <Text style={styles.text}>
+        Temperatur: {pkg.currentTemp}°C
+      </Text>
+      <Text style={styles.text}>
+        Luftfuktighet: {pkg.currentHumidity}%
+      </Text>
+      <Text style={styles.text}>TUG: {pkg.timeOutsideRange}</Text>
+      <Text style={styles.text}>
+        Route: {pkg.rutt}
+      </Text>
+
+      <Text style={styles.text}>
+        Transportör: {pkg.transport.name}
+      </Text>
+
+      <Text style={styles.text}>
+        Från: {pkg.sender.name}, {pkg.sender.adress1}
+      </Text>
+
+      <Text style={styles.text}>
+        Förväntad temperatur: {pkg.expectedTemp.min}° - {pkg.expectedTemp.max}°
+      </Text>
+
+      <Text style={styles.text}>
+        Förväntad luftfuktighet: {pkg.expectedHumidity.min}% - {pkg.expectedHumidity.max}%
+      </Text>
+
+      <Text style={styles.text}>
+        Status: {pkg.status.text} @ {new Date(pkg.status.timestamp).toLocaleString()}
+      </Text>
     </View>
   );
 };
@@ -33,28 +55,17 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
 export default PackageObject;
 
 const styles = StyleSheet.create({
-  header: {
-    color: colors.black,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
   text: {
     color: colors.black,
+    marginVertical: 2,
   },
   container: {
     backgroundColor: colors.white,
     padding: 10,
     margin: 10,
     borderRadius: 10,
-    borderWidth: 5,
+    borderWidth: 2,
     borderColor: colors.lightblue,
     width: "100%",
-    justifyContent: "center"
   },
-  index: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginRight: 5,
-    color: colors.clearblue,
-  }
 });

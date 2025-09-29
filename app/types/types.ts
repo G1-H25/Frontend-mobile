@@ -1,18 +1,40 @@
 export type Package = {
-  OrderId: any;
-  RouteName: any;
-  RouteCode: any;
-  Sändningsnr: any;
-  ExpectedTempMin: any;
-  ExpectedTempMax: any;
-  ExpectedHumidityMin: any;
-  ExpectedHumidityMax: any;
-  Transport: any;
-  SenderName: any;
-  RecipientName: any;
-  Status: any;
-  StatusTime: any;
-  CurrentTemp: any;
-  CurrentHumidity: any;
-  TimeOutsideRange: any;
+  sändningsnr: number;
+  rutt: string;
+
+  expectedTemp: {
+    min: number;
+    max: number;
+  };
+
+  currentTemp: number;
+  currentHumidity: number;
+
+  minTempMeasured: number;
+  maxTempMeasured: number;
+  minHumidityMeasured: number;
+  maxHumidityMeasured: number;
+
+  expectedHumidity: {
+    min: number;
+    max: number;
+  };
+
+  timeOutsideRange: number;
+
+  status: {
+    text: string;
+    timestamp: string; // ISO date string
+  };
+
+  transport: {
+    id: number;
+    name: string;
+  };
+
+  sender: {
+    id: number;
+    name: string;
+    adress1: string;
+  };
 };

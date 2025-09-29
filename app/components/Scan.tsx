@@ -7,12 +7,16 @@ import {
 } from "expo-camera";
 import { useEffect, useState } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { usePackages } from "../context/PackagesProvider";
 import { colors } from "../theme/colors";
+import { Package } from "../types/types";
 
 export default function Scan() {
+  const { packages, loading, error } = usePackages();
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [data, setData] = useState<string | null>(null);
+  const [currentPkg, setCurrentPkg] = useState<Package | null>(null); //fel vid null som typ så använder any
 
   useEffect(() => {
     if (!permission) {
@@ -23,27 +27,38 @@ export default function Scan() {
   const handleBarCodeScanned = async (result: BarcodeScanningResult) => {
     if (!scanned) {
       setScanned(true);
-      alert(`Scanned: ${result.data}`);
       setData(result.data);
+      // console.log(result.raw); //loggar endast QR-kodens resultat i form av ett specifikt id-nummer
+      const scannedId = Number(result.data);
+      const found = packages.find((pkg) => pkg.sändningsnr === scannedId) //bättre om sändningsnr heter OrderId
 
-      try {
-        const parsed = JSON.parse(result.data);
+      if (found) {
+        // console.log("Package found", found);
+        setCurrentPkg(found);
+        alert(`Package found: ${JSON.stringify(found)}`);
 
-        const stored = await AsyncStorage.getItem("scannedData");
-        let packages = [];
+        try {
+          const stored = await AsyncStorage.getItem("scannedData");
+          let savedPackages: any[] = [];
+          if (stored) {
+            const parsedStored = JSON.parse(stored);
+            savedPackages = Array.isArray(parsedStored) ? parsedStored : [];
+          }
 
-        if (stored) {
-          const parsedStored = JSON.parse(stored);
-          packages = Array.isArray(parsedStored) ? parsedStored : [];
+          const alreadyExists = savedPackages.some((pkg) => pkg.sändningsnr === found.sändningsnr);
+          if (!alreadyExists) {
+            const updated = [...savedPackages, found]
+            await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
+            // console.log("Updated scannedData:", updated);
+          }  
+        } catch (error) {
+          console.error("Error saving data", error);
         }
 
-        const updated = [...packages, parsed];
-
-        await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
-
-      } catch (error) {
-        console.error("Error saving data", error);
-      }
+        } else {
+          console.log(`No package with ID: ${scannedId}`);
+          alert(`No package with ID ${result.raw} was found`)
+        }
     }
   };
 

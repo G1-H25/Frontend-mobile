@@ -2,6 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { PackagesProvider } from "../context/PackagesProvider";
 import { colors } from "../theme/colors";
 
 const IconWithCircle = ({
@@ -29,6 +30,7 @@ const IconWithCircle = ({
 
 export default function TabLayout() {
   return (
+    <PackagesProvider>
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#fff",
@@ -89,16 +91,17 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="fetchpack"
+        name="truck"
         options={{
-          title: "Fetchpack",
+          title: "Truck",
           headerShown: false,
           tabBarIcon: ({ size, focused }) => (
-            <IconWithCircle name="map" size={size} focused={focused} />
+            <IconWithCircle name="truck" size={size} focused={focused} />
           ),
         }}
       />
     </Tabs>
+    </PackagesProvider>
   );
 }
 

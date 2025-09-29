@@ -1,9 +1,6 @@
-import { StyleSheet, View, Text, Pressable} from "react-native";
-import { colors } from "../theme/colors";
-import ScannedItem from "../components/ScannedItem";
+import { StyleSheet, View } from "react-native";
 import Scan from "../components/Scan";
-import Background from "../components/Background";
-import NavigationButton from "../components/NavigationButton";
+import { colors } from "../theme/colors";
 
 
 export default function scan() {
@@ -11,8 +8,8 @@ export default function scan() {
 
   return (
     <View style={styles.container}>
-      <Scan style={styles.overlay} />
-      <Background style={styles.listContainer}>
+      <Scan />
+      {/* <Background style={styles.listContainer}>
         <Text style={styles.title}>Your latest scan</Text>
         <View style={styles.listArea}>
           <ScannedItem/>
@@ -20,7 +17,7 @@ export default function scan() {
           <NavigationButton/>
           </Pressable>
         </View>
-      </Background>
+      </Background> */}
     </View>
   );
 }
