@@ -39,7 +39,7 @@ const MapComponent = () => {
       <MapView
         style={styles.map}
         region={position}
-        showsUserLocation={true}
+        showsUserLocation={false}
         showsMyLocationButton={true}
         followsUserLocation={true}
         showsCompass={true}
@@ -54,7 +54,7 @@ const MapComponent = () => {
           coordinate={position}
         >  
         <Image 
-    source={require('../../assets/images/pin-blue-3.png')}
+    source={require('../../assets/images/pin-blue-0.png')}
     style={styles.markerImage}
   />
         </Marker>
@@ -63,7 +63,7 @@ const MapComponent = () => {
         style={{
           position: 'absolute',
           margin: 16,
-          right: 130,
+          right: 100,
           bottom: 10,
           zIndex: 1,
           backgroundColor: colors.bright,
@@ -102,7 +102,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   markerImage: {
-    width: 35,
-    height: 60,
+    width: 40,
+    height: 70,
+    paddingBottom: 30,
+    marginLeft: 5,
+    resizeMode: 'contain',
 },
 });
