@@ -56,7 +56,7 @@ const GetPackages: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text>
+      
         {error ? (
           <Text>Error: {error}</Text>
         ) : packages.length === 0 ? (
@@ -66,7 +66,7 @@ const GetPackages: React.FC = () => {
             <PackageObject key={pkg.sändningsnr} package={pkg} index={i + 1} />
           ))
         )}
-      </Text>
+      
     </View>
   );
 };
@@ -75,6 +75,6 @@ export default GetPackages;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
+    margin: 10,
   },
 });

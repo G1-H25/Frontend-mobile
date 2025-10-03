@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: colors.lightblue,
-    width: "100%",
+    borderColor: colors.lightblue
   },
 });
