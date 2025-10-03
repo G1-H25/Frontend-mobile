@@ -5,6 +5,8 @@ import { StyleSheet, View } from "react-native";
 import { PackagesProvider } from "../context/PackagesProvider";
 import { colors } from "../theme/colors";
 
+// Se ikoner: https://icons.expo.fyi/Index Sök med filter: MaterialCommunityIcons
+
 const IconWithCircle = ({
   name,
   color,
@@ -76,7 +78,7 @@ export default function TabLayout() {
           title: "Packages",
           headerShown: false,
           tabBarIcon: ({ size, focused }) => (
-            <IconWithCircle name="format-list-bulleted-square" size={size} focused={focused} />
+            <IconWithCircle name="cube" size={size} focused={focused} />
           ),
         }}
       />
