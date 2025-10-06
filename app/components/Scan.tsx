@@ -30,35 +30,39 @@ export default function Scan() {
       setData(result.data);
       // console.log(result.raw); //loggar endast QR-kodens resultat i form av ett specifikt id-nummer
       const scannedId = Number(result.data);
-      const found = packages.find((pkg) => pkg.sändningsnr === scannedId) //bättre om sändningsnr heter OrderId
+      const found = packages.find((pkg) => pkg.sändningsnr === scannedId); //bättre om sändningsnr heter OrderId
 
       if (found) {
-        // console.log("Package found", found);
         setCurrentPkg(found);
-        alert(`Package found: ${JSON.stringify(found)}`);
 
         try {
           const stored = await AsyncStorage.getItem("scannedData");
-          let savedPackages: any[] = [];
-          if (stored) {
-            const parsedStored = JSON.parse(stored);
-            savedPackages = Array.isArray(parsedStored) ? parsedStored : [];
-          }
+          const savedPackages: Package[] = stored ? JSON.parse(stored) : [];
 
-          const alreadyExists = savedPackages.some((pkg) => pkg.sändningsnr === found.sändningsnr);
-          if (!alreadyExists) {
-            const updated = [...savedPackages, found]
+          const alreadyExists = savedPackages.some(
+            (pkg) => pkg.sändningsnr === found.sändningsnr
+          );
+
+          if (alreadyExists) {
+            const updated = savedPackages.filter(
+              (pkg) => pkg.sändningsnr !== found.sändningsnr
+            );
+
             await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
-            // console.log("Updated scannedData:", updated);
-          }  
+            alert(`Package checked out: ${found.sändningsnr}`);
+          } else {
+            const updated = [...savedPackages, found];
+            await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
+            alert(`Package checked in: ${found.sändningsnr}`);
+          }
         } catch (error) {
-          console.error("Error saving data", error);
+          console.log("Error");
+          alert("Error");
         }
-
-        } else {
-          console.log(`No package with ID: ${scannedId}`);
-          alert(`No package with ID ${result.raw} was found`)
-        }
+      } else {
+        console.log(`No package with ID: ${scannedId} found`);
+        alert(`No package with ID ${result.raw} found`);
+      }
     }
   };
 
