@@ -29,8 +29,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   buttonText: {
-    color: "white"
-  }
+    color: colors.lightblue,
+    fontSize: 15,
+    fontWeight: "700",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+  },
 })
 
 export default ClearStorageButton;
