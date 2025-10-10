@@ -1,3 +1,4 @@
+import updatePackageStatus from "@/utils/updatePackageStatus";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -41,7 +42,6 @@ export default function Scan() {
 
       if (found) {
         setCurrentPkg(found);
-
         try {
           const stored = await AsyncStorage.getItem("scannedData");
           const savedPackages: Package[] = stored ? JSON.parse(stored) : [];
@@ -58,7 +58,7 @@ export default function Scan() {
                 {
                   text: "Cancel",
                   style: "cancel",
-                  onPress: () => {
+                  onPress: async () => {
                     console.log("Cancelled");
                     setScanned(true);
                   },
@@ -70,6 +70,7 @@ export default function Scan() {
                   );
 
                   await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
+                  await updatePackageStatus(scannedId);
                 setScanned(true);
                 }  
               },
@@ -80,6 +81,7 @@ export default function Scan() {
           } else {
             const updated = [...savedPackages, found];
             await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
+            await updatePackageStatus(scannedId);
             alert(`Package checked in: ${found.sändningsnr}`);
           }
         } catch (error) {
