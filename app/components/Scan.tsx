@@ -6,7 +6,14 @@ import {
   useCameraPermissions,
 } from "expo-camera";
 import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { usePackages } from "../context/PackagesProvider";
 import { colors } from "../theme/colors";
 import { Package } from "../types/types";
@@ -16,7 +23,7 @@ export default function Scan() {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [data, setData] = useState<string | null>(null);
-  const [currentPkg, setCurrentPkg] = useState<Package | null>(null); //fel vid null som typ så använder any
+  const [currentPkg, setCurrentPkg] = useState<Package | null>(null);
 
   useEffect(() => {
     if (!permission) {
@@ -30,7 +37,7 @@ export default function Scan() {
       setData(result.data);
       // console.log(result.raw); //loggar endast QR-kodens resultat i form av ett specifikt id-nummer
       const scannedId = Number(result.data);
-      const found = packages.find((pkg) => pkg.sändningsnr === scannedId); //bättre om sändningsnr heter OrderId
+      const found = packages.find((pkg) => pkg.sändningsnr === scannedId);
 
       if (found) {
         setCurrentPkg(found);
@@ -44,12 +51,32 @@ export default function Scan() {
           );
 
           if (alreadyExists) {
-            const updated = savedPackages.filter(
-              (pkg) => pkg.sändningsnr !== found.sändningsnr
+            Alert.alert(
+              "Confirm checkout",
+              `Check out package with id ${scannedId}`,
+              [
+                {
+                  text: "Cancel",
+                  style: "cancel",
+                  onPress: () => {
+                    console.log("Cancelled");
+                    setScanned(true);
+                  },
+                },
+                { text: "OK", 
+                  onPress: async () => {
+                  const updated = savedPackages.filter(
+                    (pkg) => pkg.sändningsnr !== found.sändningsnr
+                  );
+
+                  await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
+                setScanned(true);
+                }  
+              },
+              ]
             );
 
-            await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
-            alert(`Package checked out: ${found.sändningsnr}`);
+            // alert(`Package checked out: ${found.sändningsnr}`);
           } else {
             const updated = [...savedPackages, found];
             await AsyncStorage.setItem("scannedData", JSON.stringify(updated));
