@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { Alert, Button } from "react-native";
+import { Alert, Pressable, StyleSheet, Text } from "react-native";
+import colors from "../theme/colors";
 
 const ClearStorageButton = () => {
   const handleClear = async () => {
@@ -15,8 +16,25 @@ const ClearStorageButton = () => {
   };
 
   return (
-    <Button title="Clear all packages" color="#fff" onPress={handleClear}/>
+    <Pressable style={styles.button} onPress={handleClear}><Text style={styles.buttonText}>Clear AsyncStorage</Text></Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: colors.clearblue,
+    padding: 4,
+    borderRadius: 40,
+    alignSelf: "center",
+    paddingHorizontal: 12,
+  },
+  buttonText: {
+    color: colors.lightblue,
+    fontSize: 15,
+    fontWeight: "700",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+  },
+})
 
 export default ClearStorageButton;
