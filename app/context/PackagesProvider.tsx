@@ -28,6 +28,7 @@ export const PackagesProvider: React.FC<{ children: React.ReactNode }> = ({
         if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
         const data: Package[] = await response.json();
         setPackages(data);
+        console.log(data);
       } catch (err: any) {
         setError(err.message);
       } finally {

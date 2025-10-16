@@ -5,14 +5,17 @@ import BackgroundLight from "../components/BackgroundLight";
 import ClearStorageButton from "../components/ClearStorageButton";
 import { colors } from "../theme/colors";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const Packages = () => {
-  
+
 
   return (
     <View style={styles.container}>
       <BackgroundAlt>
         <Text style={styles.text}>Packages</Text>
-        <BackgroundLight>         
+        <Text style={styles.text}>{API_URL}</Text>
+        <BackgroundLight>
             <ClearStorageButton />
         </BackgroundLight>
       </BackgroundAlt>
