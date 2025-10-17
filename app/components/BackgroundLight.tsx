@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.brightopacity,
     borderRadius: 10,
-    marginHorizontal: 30,
-    marginVertical: 40,
+    marginHorizontal: 10,
+    marginVertical: 10,
     overflow: "hidden",
   },
   scrollContent: {
