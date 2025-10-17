@@ -1,19 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../theme/colors";
 import { Package } from "../types/types";
+import BackgroundLight from "./BackgroundLight";
 
 type PackageObjectProps = {
   package: Package;
   index?: number;
 };
 
+
+
 const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
   if (!pkg) return <ActivityIndicator />;
 
   return (
-    <View style={styles.container}>
+    <BackgroundLight>
       {index !== undefined && (
         <Text style={styles.text}>ID: {pkg.sändningsnr}</Text>
       )}
@@ -26,7 +29,7 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
       </Text>
       <Text style={styles.text}>TUG: {pkg.timeOutsideRange}</Text>
       <Text style={styles.text}>
-        Route: {pkg.rutt}
+        Rutt: {pkg.rutt}
       </Text>
 
       <Text style={styles.text}>
@@ -48,7 +51,7 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
       <Text style={styles.text}>
         Status: {pkg.status.text} @ {new Date(pkg.status.timestamp).toLocaleString()}
       </Text>
-    </View>
+    </BackgroundLight>
   );
 };
 
