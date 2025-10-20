@@ -3,6 +3,7 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { PackagesProvider } from "../context/PackagesProvider";
+import { UserProvider } from "../../context/UserContext";
 import { colors } from "../theme/colors";
 
 // Se ikoner: https://icons.expo.fyi/Index Sök med filter: MaterialCommunityIcons
@@ -32,6 +33,7 @@ const IconWithCircle = ({
 
 export default function TabLayout() {
   return (
+    <UserProvider>
     <PackagesProvider>
     <Tabs
       screenOptions={{
@@ -102,8 +104,19 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="login"
+        options={{
+          title: "Login",
+          headerShown: false,
+          tabBarIcon: ({ size, focused }) => (
+            <IconWithCircle name="account-arrow-right" size={size} focused={focused} />
+          ),
+        }}
+      />
     </Tabs>
     </PackagesProvider>
+    </UserProvider>
   );
 }
 

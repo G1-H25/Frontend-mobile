@@ -2,12 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Background from '../components/Background'
 import { colors } from '../theme/colors'
+import HomeLogin from '../components/HomeLogin'
 
 const home = () => {
   return (
         <View style={styles.container}>
     <Background>
       <Text style={styles.text}>Start</Text>
+      <HomeLogin />
     </Background>
     </View>
   )

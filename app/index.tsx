@@ -13,10 +13,10 @@ export default function Index() {
   useEffect(() => {
     // Navigera till home efter 4 sekunder
     const timer = setTimeout(() => {
-      router.replace("/home"); // "replace" tar bort splash-skärmen från historiken
+      router.replace("/home"); 
     }, 4000);
 
-    return () => clearTimeout(timer); // Rensa timeout om komponenten avmonteras
+    return () => clearTimeout(timer); 
   }, [router]);
 
   return (
@@ -26,7 +26,6 @@ export default function Index() {
 
       <View style={styles.circle}>
                 <AnimatedLogo />
-{/* <Image source={require("../assets/logos/logo-trackpack-1.png")} style={styles.logo} /> */}
 </View>
       <Text style={styles.text}>Welcome to TrackApp</Text>
       <Text style={styles.smalltext}>2025 Copyright &copy; by Team One</Text>

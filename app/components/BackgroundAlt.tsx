@@ -6,7 +6,7 @@ type BackgroundProps = {
   children: ReactNode;
 };
 
-const Background2 = ({ children }: BackgroundProps) => {
+const BackgroundAlt = ({ children }: BackgroundProps) => {
   return (
     <View style={styles.Background}>
       <ImageBackground
@@ -19,7 +19,7 @@ const Background2 = ({ children }: BackgroundProps) => {
   );
 };
 
-export default Background2;
+export default BackgroundAlt;
 
 const styles = StyleSheet.create({
   Background: {

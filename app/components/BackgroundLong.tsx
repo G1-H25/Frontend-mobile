@@ -6,7 +6,7 @@ type BackgroundProps = {
   children: ReactNode;
 };
 
-const Background3 = ({ children }: BackgroundProps) => {
+const BackgroundLong = ({ children }: BackgroundProps) => {
   return (
     <View style={styles.Background}>
       <ImageBackground
@@ -19,7 +19,7 @@ const Background3 = ({ children }: BackgroundProps) => {
   );
 };
 
-export default Background3;
+export default BackgroundLong;
 
 const styles = StyleSheet.create({
   Background: {
