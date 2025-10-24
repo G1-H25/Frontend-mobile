@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { StyleSheet, View, ImageBackground } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import { colors } from '../theme/colors';
 
 type BackgroundProps = {
