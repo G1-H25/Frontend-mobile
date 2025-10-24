@@ -2,6 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { AuthProvider } from "../context/AuthContext";
 import { PackagesProvider } from "../context/PackagesProvider";
 import { colors } from "../theme/colors";
 
@@ -14,7 +15,7 @@ const IconWithCircle = ({
   focused,
 }: {
   name: any;
-  color: string;
+  color?: string;
   size: number;
   focused: boolean;
 }) => (
@@ -32,6 +33,7 @@ const IconWithCircle = ({
 
 export default function TabLayout() {
   return (
+    <AuthProvider>
     <PackagesProvider>
     <Tabs
       screenOptions={{
@@ -104,6 +106,7 @@ export default function TabLayout() {
       />
     </Tabs>
     </PackagesProvider>
+    </AuthProvider>
   );
 }
 

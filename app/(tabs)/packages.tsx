@@ -5,15 +5,14 @@ import BackgroundLight from "../components/BackgroundLight";
 import ClearStorageButton from "../components/ClearStorageButton";
 import { colors } from "../theme/colors";
 
-const Packages = () => {
-  
+const Packages: React.FC = () => {
 
   return (
     <View style={styles.container}>
       <BackgroundAlt>
         <Text style={styles.text}>Packages</Text>
         <BackgroundLight>         
-            <ClearStorageButton />
+            <ClearStorageButton/>
         </BackgroundLight>
       </BackgroundAlt>
     </View>

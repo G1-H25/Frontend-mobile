@@ -4,6 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../theme/colors";
 import { Package } from "../types/types";
 import BackgroundLight from "./BackgroundLight";
+import ShowLocation from "./ShowLocation";
 
 type PackageObjectProps = {
   package: Package;
@@ -17,16 +18,17 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
 
   return (
     <BackgroundLight>
+      
       {index !== undefined && (
         <Text style={styles.text}>ID: {pkg.sändningsnr}</Text>
       )}
 
-      <Text style={styles.text}>
+      {/* <Text style={styles.text}>
         Temperatur: {pkg.currentTemp}°C
       </Text>
       <Text style={styles.text}>
         Luftfuktighet: {pkg.currentHumidity}%
-      </Text>
+      </Text> */}
       <Text style={styles.text}>TUG: {pkg.timeOutsideRange}</Text>
       <Text style={styles.text}>
         Rutt: {pkg.rutt}
@@ -51,6 +53,7 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
       <Text style={styles.text}>
         Status: {pkg.status.text} @ {new Date(pkg.status.timestamp).toLocaleString()}
       </Text>
+      <ShowLocation/>
     </BackgroundLight>
   );
 };

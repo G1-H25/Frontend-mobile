@@ -21,6 +21,9 @@ yarn install
 In the root directory, create a .env file and set your local API URL (replace with your Wi-Fi IP address):
 
 EXPO_PUBLIC_API_URL=http://YOUR.WIFI.IP.ADDRESS:3000/
+EXPO_PUBLIC_AZURE_API_URL=AZURE-URL
+EXPO_PUBLIC_USERNAME=your username
+EXPO_PUBLIC_PASSWORD=your password
 ```
 
 ### ⚠️ Make sure your phone and computer are on the same Wi-Fi network.
