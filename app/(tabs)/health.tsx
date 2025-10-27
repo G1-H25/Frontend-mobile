@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Background from '../components/Background'
+import BackgroundAlt from "../components/BackgroundAlt";
 import { colors } from '../theme/colors'
 
 const health = () => {
   return (
         <View style={styles.container}>
-    <Background>
+    <BackgroundAlt>
       <Text style={styles.text}>health overview</Text>
-    </Background>
+    </BackgroundAlt>
     </View>
   )
 }

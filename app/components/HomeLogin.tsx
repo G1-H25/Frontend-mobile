@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useUser } from '../../context/UserContext';
 import { useRouter } from 'expo-router';
+import { colors } from '../theme/colors';
 
 export default function HomeLogin() {
   const { user, logout } = useUser();
@@ -34,16 +35,17 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     justifyContent: 'center', 
-    alignItems: 'center' 
+    alignItems: 'center',
+    backgroundColor: colors.clearblue,
   },
   title: { 
     fontSize: 22, 
-    fontWeight: 'bold', 
+    fontFamily: 'Figtree-Bold', 
     marginBottom: 8 
   },
   subtitle: { 
     fontSize: 16, 
-    color: 'gray', 
+    color: colors.darkblue, 
     marginBottom: 20 
   },
 });
