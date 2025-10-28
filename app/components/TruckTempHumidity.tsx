@@ -1,7 +1,9 @@
+import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import colors from "../theme/colors";
+import OutOfRangeTimer from "./OutOfRangeTimer";
 
 type SensorTemperature = {
   sensorId: number;
@@ -28,18 +30,11 @@ const TruckTempHumidity = () => {
 
     const fetchTemperature = async () => {
       try {
-        const response = await fetch(
-          `${API_URL}Sensor/sensor-temperature`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        const response = await fetch(`${API_URL}Sensor/sensor-temperature`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (!response.ok) throw new Error("Failed to fetch temperature");
         const data: SensorTemperature[] = await response.json();
-
         if (data.length > 0) setTemp(data[0].temperatureCel);
       } catch (error) {
         console.error("Error fetching temperature:", error);
@@ -48,37 +43,64 @@ const TruckTempHumidity = () => {
 
     const fetchHumidity = async () => {
       try {
-        const response = await fetch(
-          `${API_URL}Sensor/sensor-humidity`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        const response = await fetch(`${API_URL}Sensor/sensor-humidity`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (!response.ok) throw new Error("Failed to fetch humidity");
         const data: SensorHumidity[] = await response.json();
-
         if (data.length > 0) setHumid(data[0].humidityPct);
       } catch (error) {
         console.error("Error fetching humidity:", error);
       }
+      
     };
 
     fetchTemperature();
     fetchHumidity();
   }, [token]);
 
+  const expectedTemp = { min: 2, max: 8 };
+  const expectedHumidity = { min: 30, max: 70 };
+
+  const isTempInRange =
+    temp !== null && temp >= expectedTemp.min && temp <= expectedTemp.max;
+  const isHumidInRange =
+    humid !== null && humid >= expectedHumidity.min && humid <= expectedHumidity.max;
+
   return (
     <View style={styles.container}>
+      <OutOfRangeTimer active={!isTempInRange || !isHumidInRange} />
       <Text style={styles.header}>Kylutrymme</Text>
-      <Text style={styles.text}>
-        {humid !== null ? `Luftfuktighet: ${humid}%` : "Laddar luftfuktighet..."}
-      </Text>
-      <Text style={styles.text}>
-        {temp !== null ? `Temperatur: ${temp}°C` : "Laddar temperatur..."}
-      </Text>
+
+      <View style={styles.row}>
+        <Text style={styles.text}>
+          {humid !== null
+            ? `Luftfuktighet: ${humid}%`
+            : "Laddar luftfuktighet..."}
+        </Text>
+        {humid !== null && (
+          <Ionicons
+            name={isHumidInRange ? "checkmark-circle" : "warning"}
+            size={35}
+            color={isHumidInRange ? "green" : "red"}
+            style={styles.icon}
+          />
+        )}
+      </View>
+
+      <View style={styles.row}>
+        <Text style={styles.text}>
+          {temp !== null ? `Temperatur: ${temp}°C` : "Laddar temperatur..."}
+        </Text>
+        {temp !== null && (
+          <Ionicons
+            name={isTempInRange ? "checkmark-circle" : "warning"}
+            size={35}
+            color={isTempInRange ? "green" : "red"}
+            style={styles.icon}
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -90,6 +112,7 @@ const styles = StyleSheet.create({
     padding: 12,
     zIndex: 100,
     backgroundColor: colors.brightopacity,
+    elevation: 20,
   },
   header: {
     color: colors.clearblue,
@@ -99,7 +122,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.darkblue,
-    fontSize: 16,
-    marginBottom: 2,
+    fontSize: 24,
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  icon: {
+    marginLeft: 6,
   },
 });
