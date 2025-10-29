@@ -1,8 +1,8 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import * as Font from 'expo-font';
 
@@ -49,7 +49,7 @@ export default function RootLayout() {
         {/* Fallback vid icke-matchande routes */}
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="dark" />
+      <StatusBar style="dark"/>
     </GestureHandlerRootView>
   );
 }
@@ -63,8 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default function RootLayout() 
   
 
 
