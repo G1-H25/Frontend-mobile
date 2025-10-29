@@ -4,7 +4,6 @@ import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../theme/colors";
 import { Package } from "../types/types";
 import BackgroundLight from "./BackgroundLight";
-import ShowLocation from "./ShowLocation";
 
 type PackageObjectProps = {
   package: Package;
@@ -34,9 +33,9 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
         Rutt: {pkg.rutt}
       </Text>
 
-      <Text style={styles.text}>
+      {/* <Text style={styles.text}>
         Transportör: {pkg.transport.name}
-      </Text>
+      </Text> */}
 
       <Text style={styles.text}>
         Från: {pkg.sender.name}, {pkg.sender.adress1}
@@ -53,7 +52,6 @@ const PackageObject = ({ package: pkg, index }: PackageObjectProps) => {
       <Text style={styles.text}>
         Status: {pkg.status.text} @ {new Date(pkg.status.timestamp).toLocaleString()}
       </Text>
-      <ShowLocation/>
     </BackgroundLight>
   );
 };
@@ -64,6 +62,8 @@ const styles = StyleSheet.create({
   text: {
     color: colors.black,
     marginVertical: 2,
+    fontFamily: 'Figtree-Bold',
+    fontSize: 16,
   },
   container: {
     backgroundColor: colors.white,

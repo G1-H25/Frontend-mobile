@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import { useAuth } from "../context/AuthContext";
 import colors from "../theme/colors";
 import OutOfRangeTimer from "./OutOfRangeTimer";
@@ -68,15 +69,15 @@ const TruckTempHumidity = () => {
     humid !== null && humid >= expectedHumidity.min && humid <= expectedHumidity.max;
 
   return (
+    <>
     <View style={styles.container}>
-      <OutOfRangeTimer active={!isTempInRange || !isHumidInRange} />
-      <Text style={styles.header}>Kylutrymme</Text>
+      <Text style={styles.header}>Kyl 1</Text>
 
       <View style={styles.row}>
-        <Text style={styles.text}>
+        <Text style={styles.text}><Ionicons name="water-outline" size={30} color="red" />
           {humid !== null
-            ? `Luftfuktighet: ${humid}%`
-            : "Laddar luftfuktighet..."}
+            ?  `${humid}%`
+            : <ActivityIndicator/>}
         </Text>
         {humid !== null && (
           <Ionicons
@@ -89,8 +90,8 @@ const TruckTempHumidity = () => {
       </View>
 
       <View style={styles.row}>
-        <Text style={styles.text}>
-          {temp !== null ? `Temperatur: ${temp}°C` : "Laddar temperatur..."}
+        <Text style={styles.text}><Ionicons name="thermometer-outline" size={30} color="red" />
+          {temp !== null ? `${temp}°C` : <ActivityIndicator/>}
         </Text>
         {temp !== null && (
           <Ionicons
@@ -101,7 +102,11 @@ const TruckTempHumidity = () => {
           />
         )}
       </View>
+      
+      
+      
     </View>
+    <OutOfRangeTimer active={!isTempInRange || !isHumidInRange} /></>
   );
 };
 
@@ -113,20 +118,25 @@ const styles = StyleSheet.create({
     zIndex: 100,
     backgroundColor: colors.brightopacity,
     elevation: 20,
+    flexDirection: "row",
+    justifyContent: "space-evenly"
   },
   header: {
-    color: colors.clearblue,
+    color: colors.darkblue,
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 6,
+    fontFamily: 'Figtree-Bold',
   },
   text: {
     color: colors.darkblue,
     fontSize: 24,
+    fontFamily: 'Figtree-Bold',
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: 4,
   },
   icon: {

@@ -16,7 +16,7 @@ const WarningModal: React.FC<WarningModalProps> = ({ visible, onClose }) => {
   return (
     <Modal
       transparent
-      animationType="fade"
+      animationType="slide"
       visible={visible}
       onRequestClose={onClose}
     >
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
+    fontFamily: 'Figtree-Bold',
     fontSize: 50,
     fontWeight: "bold",
     color: colors.white,
@@ -89,8 +90,10 @@ const styles = StyleSheet.create({
     color: colors.darkblue,
     fontSize: 24,
     textAlign: "center",
+    fontWeight: "bold",
   },
   message: {
+    fontFamily: 'Figtree-Bold',
     fontSize: 20,
     color: colors.white,
     textAlign: "center",
