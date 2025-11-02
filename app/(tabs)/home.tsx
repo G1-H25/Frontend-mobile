@@ -2,21 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import BackgroundLong from '../components/BackgroundLong'
 import { colors } from '../theme/colors'
+import HomeComponent from '../components/HomeComponent'
 
 const home = () => {
   return (
         <View style={styles.container}>
     <BackgroundLong>
-      <Text style={styles.title}>Start</Text>
-      <Image source={require('../../assets/logos/logo-trackpack-2.png')} style={styles.logo} />
-      <View style={styles.homeBox}>
-        
-     <Text style={styles.text}>Välkommen till TrackPack!{"\n"}{"\n"}
-Här kan du som användare enkelt hålla koll på dina paket och leveranser.{"\n"}{"\n"}
-Med vår app får du realtidsuppdateringar, aviseringar och en smidig översikt över alla dina försändelser.{"\n"}{"\n"}
-Börja med att lägga till dina paket och upplev en ny nivå av bekvämlighet i din vardag!
-     </Text>
-        </View>
+      <HomeComponent/>
     </BackgroundLong>
     </View>
   )
